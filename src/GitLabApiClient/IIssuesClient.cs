@@ -135,5 +135,12 @@ namespace GitLabApiClient
         /// <param name="issueIid">The IID of an issue.</param>
         /// <param name="noteId">The ID of a note.</param>
         Task DeleteNoteAsync(ProjectId projectId, int issueIid, int noteId);
+
+        /// <summary>
+        /// Get a list of a given issue’s linked issues, sorted by the relationship creation datetime (ascending). Issues are filtered according to the user authorizations.
+        /// </summary>
+        /// <param name="projectId">The ID, path or <see cref="Project"/> of the project.</param>
+        /// <param name="issueIid">The IID of an issue.</param>
+        Task<IList<Issue>> GetLinksAsync(ProjectId projectId, int issueIid);
     }
 }

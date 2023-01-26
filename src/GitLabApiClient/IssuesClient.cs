@@ -195,5 +195,14 @@ namespace GitLabApiClient
         /// <param name="noteId">The ID of a note.</param>
         public async Task DeleteNoteAsync(ProjectId projectId, int issueIid, int noteId) =>
             await _httpFacade.Delete($"projects/{projectId}/issues/{issueIid}/notes/{noteId}");
+
+        /// <summary>
+        /// Get a list of a given issue’s linked issues, sorted by the relationship creation datetime (ascending). Issues are filtered according to the user authorizations.
+        /// TODO: Add more methods from https://docs.gitlab.com/ee/api/issue_links.html#get-an-issue-link
+        /// </summary>
+        /// <param name="projectId">The ID, path or <see cref="Project"/> of the project.</param>
+        /// <param name="issueIid">The IID of an issue.</param>
+        public async Task<IList<Issue>> GetLinksAsync(ProjectId projectId, int issueIid) =>
+            await _httpFacade.Get<IList<Issue>>($"projects/{projectId}/issues/{issueIid}/links");
     }
 }
